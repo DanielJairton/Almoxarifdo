@@ -322,8 +322,8 @@ document.getElementById('btnGravar').addEventListener('click', function(){
 });
 
 //Constante do valor total de requisição, zerado para evitar erro
-const totalRequisicao = document.getElementById('total')
-totalRequisicao.value = 0
+const totalRequisicao = document.getElementById('total');
+totalRequisicao.value = 0;
 
 //Retonar o elemento btnRemover
 function criarBtnRemover(tabela, objLinha, numeroLinha){
@@ -339,6 +339,13 @@ function criarBtnRemover(tabela, objLinha, numeroLinha){
 
         const colunas = objLinha.getElementsByTagName('td');
         let valorLinha = colunas[5].innerText;
+
+        //Subtraindo valor da linha do total
+        //Incompleto -- Falta Commit
+        /*totalRequisicao.value = totalRequisicao.value.replace("R$ ", "");
+        totalRequisicao.value = totalRequisicao.value.replace(",", ".");
+        totalRequisicao.value = parseFloat(parseFloat(totalRequisicao.value) - parseFloat(valorLinha));
+        totalRequisicao.value = totalRequisicao.value.toFixed(2);*/
 
         totalRequisicao.value = parseFloat(totalRequisicao.value - parseFloat(valorLinha));
 
@@ -407,6 +414,10 @@ document.getElementById('btnInserirItens').addEventListener('click', function(){
         linha.appendChild(tdBtnRemover);
         tabelaItens.appendChild(linha);
         qtdLinhasAtualNaTabela = qtdLinhasAtualNaTabela + 1;
+    
+    //Resetar campos
+    document.getElementById('CodigoProduto').value = "";
+    carregarProduto();
 })
 
 document.getElementById('total').addEventListener("change", function () {
